@@ -285,7 +285,7 @@ internal class HLSExtractor : IExtractor
             // program date time
             else if (line.StartsWith(HLSTags.ext_x_program_date_time))
             {
-                segment.DateTime = DateTime.Parse(ParserUtil.GetAttribute(line));
+                segment.DateTime = DateTime.Parse(ParserUtil.GetAttribute(line), null, System.Globalization.DateTimeStyles.RoundtripKind);
             }
             // 解析不连续标记，需要单独合并（timestamp不同）
             else if (line.StartsWith(HLSTags.ext_x_discontinuity))
