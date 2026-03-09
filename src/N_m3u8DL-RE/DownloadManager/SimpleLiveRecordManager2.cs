@@ -41,7 +41,7 @@ internal class SimpleLiveRecordManager2
     ConcurrentDictionary<int, long> DateTimeDic = new(); // 上次下载的dateTime
     CancellationTokenSource CancellationTokenSource = new(); // 取消Wait
 
-    private readonly Lock lockObj = new();
+    private readonly object lockObj = new();
     TimeSpan? audioStart = null;
 
     public SimpleLiveRecordManager2(DownloaderConfig downloaderConfig, List<StreamSpec> selectedSteams, StreamExtractor streamExtractor)

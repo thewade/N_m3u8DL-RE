@@ -223,7 +223,7 @@ internal partial class DASHExtractor2 : IExtractor
                     // 发布时间
                     if (!string.IsNullOrEmpty(publishTime))
                     {
-                        streamSpec.PublishTime = DateTime.Parse(publishTime);
+                        streamSpec.PublishTime = DateTime.Parse(publishTime, null, System.Globalization.DateTimeStyles.RoundtripKind);
                     }
 
 
@@ -408,8 +408,8 @@ internal partial class DASHExtractor2 : IExtractor
                             // 直播的情况，需要自己计算totalNumber
                             if (totalNumber == 0 && isLive)
                             {
-                                var now = DateTime.Now;
-                                var availableTime = DateTime.Parse(availabilityStartTime!);
+                                var now = DateTime.UtcNow;
+                                var availableTime = DateTime.Parse(availabilityStartTime!, null, System.Globalization.DateTimeStyles.RoundtripKind);
                                 // 可用时间+偏移量
                                 var offsetMs = TimeSpan.FromMilliseconds(Convert.ToInt64(presentationTimeOffsetStr) / 1000);
                                 availableTime = availableTime.Add(offsetMs);
